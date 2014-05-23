@@ -1,0 +1,24 @@
+1、进入目录： cd g:    or   cd g:/git
+2、创建该目录下的版本控制库： git init
+3、将文件或文件夹加入到版本控制中（不加入则不控制）：
+	git add hello.rb
+	git commit -m "First Commit"
+4、检查工作目录的状态(是否有文件被修改) ： git status
+5、查看文本修改的内容： git diff hello.rb
+6、提交修改
+	git add hello.rb
+	git commit -m "Second Commit"
+7、查看 修改的历史记录：
+	git log
+	如果闲输出的信息过多： 可以执行 git log --pretty=oneline
+8、回退到某一版本（HEAD^ 为上一版本，HEAD^^ 为回退两个版本 ，HEAD~100 恢复到第前100个版本）
+	git reset --hard HEAD^
+9、查看文件的内容
+	cat hello.rb
+10、回退之后 再回到最新的版本（）
+	如果记得id号,则 直接 $ git reset --hard 3628164   （输入前六位即可）
+	如果不记得了：git reflog  记录每一次的提交和reset操作
+	
+11、git版本管理中 分为两个区 工作区  和 版本库
+	工作区为当前的要管理的文件目录，隐藏目录 .git下为版本库，版本库中有 成为stage的暂存区，第一个分支master，指向master的指针HEAD
+	文件忘版本库里添加的时候分为两步：1、git add 其实是把提交的文件放到版本库的暂存区；2、执行git commit 命令 把暂存区的文件放到master分支上
