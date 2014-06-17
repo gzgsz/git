@@ -1,10 +1,21 @@
-1、进入目录： cd g:    or   cd g:/git
+﻿1、进入目录： cd g:    or   cd g:/git
 2、创建该目录下的版本控制库： git init
 3、将文件或文件夹加入到版本控制中（不加入则不控制）：
 	git add hello.rb
 	git commit -m "First Commit"
 4、检查工作目录的状态(是否有文件被修改) ： git status
 5、查看文本修改的内容： git diff hello.rb
+	q: 退出文本比较
+	j或e或者下选箭头，查看未显示的内容;
+	w: 查看刚开始的内容
+	r:刷新当前内容
+	空格：直接查看全部内容
+	s : 打开log file
+	d、f:查看全部内容
+	h:进入帮助界面
+	k:回退一行
+	z:查看全部
+	
 6、提交修改
 	git add hello.rb
 	git commit -m "Second Commit"
@@ -12,7 +23,8 @@
 	git log
 	如果闲输出的信息过多： 可以执行 git log --pretty=oneline
 8、回退到某一版本（HEAD^ 为上一版本，HEAD^^ 为回退两个版本 ，HEAD~100 恢复到第前100个版本）
-	git reset --hard HEAD^
+	git reset --hard HEAD^ 
+	会把工作区里没有提交的内容覆盖掉
 9、查看文件的内容
 	cat hello.rb
 10、回退之后 再回到最新的版本（）
@@ -22,3 +34,21 @@
 11、git版本管理中 分为两个区 工作区  和 版本库
 	工作区为当前的要管理的文件目录，隐藏目录 .git下为版本库，版本库中有 成为stage的暂存区，第一个分支master，指向master的指针HEAD
 	文件忘版本库里添加的时候分为两步：1、git add 其实是把提交的文件放到版本库的暂存区；2、执行git commit 命令 把暂存区的文件放到master分支上
+12、git 管理的是修改而不是文件
+	git diff HEAD -- hello.rb 比较的是工作区和版本库里的暂存区的内容，而不是工作区与分支的比较。
+	只有git add 到暂存区后的修改才能提交
+13、git checkout --hello/hello.rb  恢复工作区最近的修改  注意：git checkout -- file 中的--很重要 ，如果没有的话则变成创建一个分支了
+14、删除文件 git rm hello.rb
+15、github托管 秘钥公钥 C:\Documents and Settings\Administrator\.ssh
+	打开Shell（Windows下打开Git Bash），创建SSH Key：
+	$ ssh-keygen -t rsa -C "youremail@example.com"
+	可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人
+16、在github建立仓库后，把本地已经建好的版本推送过去
+	git remote add origin https://github.com/gzgsz/git.git
+	git push -u origin master （第一次加上 -u）
+	git push origin master(以后)   把本地master分支的最新修改推送至GitHub
+	
+17、从远程库克隆到新的本地库(先进入到指定的目录)
+	git clone https://github.com/gzgsz/gitskills.git
+	
+	还可以  git clone git@github.com:gzgsz/gitskills.git  实现克隆
